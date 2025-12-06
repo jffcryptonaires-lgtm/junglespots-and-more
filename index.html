@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JungleSpotsPR - Ríos y Playas en Puerto Rico</title>
+  <meta name="description" content="Tours guiados por ríos y playas en Puerto Rico. Real adventure con guías locales. Reserva tu experiencia con JungleSpotsPR.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #02040a;
+      color: #f5f5f5;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(2, 4, 10, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .logo-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 2px solid #00c48c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: #00c48c;
+      color: #02040a;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+    }
+
+    .menu-btn {
+      border: 1px solid rgba(255,255,255,0.16);
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .menu-btn span::before,
+    .menu-btn span::after {
+      content: "";
+      width: 16px;
+      height: 1.5px;
+      background: #ffffff;
+      position: absolute;
+      left: 0;
+    }
+
+    .menu-btn span::before { top: -4px; }
+    .menu-btn span::after { top: 4px; }
+
+    .mobile-menu {
+      display: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: #02040a;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 3rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text h1 span {
+      color: #00c48c;
+    }
+
+    .hero-text p {
+      color: #c9c9c9;
+      margin-bottom: 1.1rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.25rem 0.7rem;
+      font-size: 0.8rem;
+      color: #d7d7d7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.6rem 1.1rem;
+      font-size: 0.9rem;
+      background: transparent;
+      color: #f5f5f5;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    .hero-note {
+      font-size: 0.82rem;
+      color: #a7a7a7;
+    }
+
+    .hero-media {
+      border-radius: 1.3rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: radial-gradient(circle at top, #07343b, #02040a);
+      position: relative;
+      min-height: 230px;
+    }
+
+    .hero-media-main {
+      width: 100%;
+      height: 100%;
+      min-height: 230px;
+      background-image: url("hero-rio-playa.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 0.9rem;
+      left: 0.9rem;
+      background: rgba(2,4,10,0.88);
+      padding: 0.7rem 0.85rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.78rem;
+    }
+
+    .hero-badge strong {
+      font-size: 0.83rem;
+    }
+
+    /* SECCIONES GENERALES */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    section p.section-subtitle {
+      color: #a8a8a8;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* SOBRE */
+    .about-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .about-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 1.2rem;
+      background: radial-gradient(circle at top left, #10202a, #02040a);
+      font-size: 0.94rem;
+      color: #dadada;
+    }
+
+    .about-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* TOURS */
+    .tours-grid {
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    .tour-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 1.1rem;
+      background: #050814;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.93rem;
+    }
+
+    .tour-tag {
+      font-size: 0.8rem;
+      color: #00c48c;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .tour-card h3 {
+      font-size: 1.05rem;
+    }
+
+    .tour-meta {
+      font-size: 0.82rem;
+      color: #b8b8b8;
+    }
+
+    /* GALERÍA */
+    .gallery-grid {
+      display: grid;
+      gap: 0.6rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item {
+      border-radius: 0.7rem;
+      overflow: hidden;
+      background: #101010;
+      height: 120px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* TESTIMONIOS */
+    .testimonials {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .testimonial {
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 1.1rem;
+      font-size: 0.9rem;
+      background: #050814;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+      color: #c7c7c7;
+    }
+
+    /* CTA RESERVA */
+    .cta {
+      border-radius: 1.3rem;
+      border: 1px solid rgba(0,196,140,0.4);
+      padding: 1.6rem 1.3rem;
+      background: radial-gradient(circle at top, #0b4037, #02040a);
+    }
+
+    .cta p {
+      font-size: 0.95rem;
+      color: #e2e2e2;
+      margin-bottom: 0.9rem;
+    }
+
+    .cta-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.4rem;
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      color: #c7c7c7;
+      margin-top: 0.7rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.5rem 1rem 2rem;
+      font-size: 0.8rem;
+      color: #a5a5a5;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      font-size: 0.82rem;
+    }
+
+    /* RESPONSIVE */
+    @media (min-width: 720px) {
+      .nav-links {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1.1fr 1fr;
+        align-items: center;
+        padding-top: 3rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1.3fr 1fr;
+      }
+
+      .tours-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      section {
+        padding: 3rem 1rem;
+      }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .cta-text {
+        max-width: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <div class="logo-circle">JS</div>
+      <div class="logo-text">JungleSpotsPR</div>
+    </div>
+    <nav class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#tours">Tours</a>
+      <a href="#galeria">Galería</a>
+      <a href="#reserva">Reserva</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="btn-primary" onclick="window.location.href='#reserva'">
+      Reserva ahora
+    </button>
+    <button class="menu-btn" onclick="toggleMenu()">
+      <span></span>
+    </button>
+  </div>
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+    <a href="#tours" onclick="toggleMenu()">Tours</a>
+    <a href="#galeria" onclick="toggleMenu()">Galería</a>
+    <a href="#reserva" onclick="toggleMenu()">Reserva</a>
+    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="hero-text">
+      <h1>Ríos y playas secretas en <span>Puerto Rico</span></h1>
+      <p>
+        This is me @jcff._ – Guía local que explora los mejores ríos y playas
+        de Puerto Rico. Real adventure, gente local, buena vibra.
+        El tour comienza a las <strong>8:00 a.m.</strong>.
+      </p>
+      <div class="hero-tags">
+        <div class="tag">Ríos cristalinos</div>
+        <div class="tag">Playas escondidas</div>
+        <div class="tag">Full day experience</div>
+      </div>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="window.location.href='https://wa.me/17870000000?text=Hola%20quiero%20info%20del%20tour%20de%20JungleSpotsPR'">
+          Reservar por WhatsApp
+        </button>
+        <button class="btn-ghost" onclick="window.location.href='https://www.instagram.com/junglespotspr'">
+          Ver Instagram
+        </button>
+      </div>
+      <div class="hero-note">
+        Cupos limitados · Recomendado para grupos, parejas y familias.
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <div class="hero-media-main"></div>
+      <div class="hero-badge">
+        <strong>JungleSpotsPR</strong><br/>
+        Ríos, playas, cuevas y spots que casi nadie conoce.  
+        Fotos, videos y recuerdos para toda la vida.
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <h2>Guía de turismo local</h2>
+    <p class="section-subtitle">
+      Basado en Río Grande, explorando toda la isla: ríos, montañas y costa.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>¿Quién soy?</h3>
+        <p>
+          Soy <strong>Johniel</strong>, fundador de <strong>JungleSpotsPR</strong>.
+          Empecé llevando amigos a mis spots favoritos de río y playa, 
+          y ahora comparto esas rutas con visitantes que quieren vivir
+          la isla como un local, no como turista más.
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>¿Qué incluye el tour?</h3>
+        <p>
+          • Transporte disponible (costo adicional).<br/>
+          • Visita a ríos y/o playas según el paquete.<br/>
+          • Fotos y videos con tu propio celular o cámara.<br/>
+          • Recomendaciones de comidas típicas boricuas durante el camino.<br/>
+          • Guía bilingüe (español / inglés).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOURS -->
+  <section id="tours">
+    <h2>Nuestros tours</h2>
+    <p class="section-subtitle">
+      Ajusta el recorrido según tu grupo: aventura, relax o un mix de ambos.
+    </p>
+    <div class="tours-grid">
+      <article class="tour-card">
+        <div class="tour-tag">Ríos</div>
+        <h3>River Adventure</h3>
+        <p>
+          Spots de agua dulce, toboganes naturales, pozas profundas
+          y paisajes verdes perfectos para fotos.
+        </p>
+        <p class="tour-meta">
+          Duración: 4–6 horas · Nivel: Fácil–moderado
+        </p>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-tag">Playas</div>
+        <h3>Hidden Beaches Tour</h3>
+        <p>
+          Playas con arena dorada, agua azul y spots menos turísticos
+          para disfrutar con calma.
+        </p>
+        <p class="tour-meta">
+          Duración: 4–6 horas · Ideal para parejas y grupos pequeños
+        </p>
+      </article>
+
+      <article class="tour-card">
+        <div class="tour-tag">Full day</div>
+        <h3>Ríos & Playas Combo</h3>
+        <p>
+          Día completo mezclando río y playa, con paradas para comer
+          frituras, mariscos y comida típica boricua.
+        </p>
+        <p class="tour-meta">
+          Duración: todo el día · El tour comienza a las 8:00 a.m.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <h2>Galería</h2>
+    <p class="section-subtitle">
+      Un poco de lo que ves en nuestro Instagram @junglespotspr.
+    </p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="galeria1.jpg" alt="Grupo en río de Puerto Rico">
+      </div>
+      <div class="gallery-item">
+        <img src="galeria2.jpg" alt="Playa escondida en Puerto Rico">
+      </div>
+      <div class="gallery-item">
+        <img src="galeria3.jpg" alt="Personas disfrutando en la roca frente al mar">
+      </div>
+      <div class="gallery-item">
+        <img src="galeria4.jpg" alt="Cueva o formación rocosa con agua cristalina">
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="opiniones">
+    <h2>Lo que dicen los invitados</h2>
+    <p class="section-subtitle">
+      Opiniones reales de personas que ya hicieron el tour.
+    </p>
+    <div class="testimonials">
+      <div class="testimonial">
+        “Una experiencia brutal, fuimos a spots que jamás hubiéramos encontrado solos.
+        Súper responsable y pendiente del grupo.”
+        <strong>– Invitado de Estados Unidos</strong>
+      </div>
+      <div class="testimonial">
+        “Los ríos y las vistas están a otro nivel. Full recomendado si quieres
+        conocer la isla de verdad.”
+        <strong>– Turista de Europa</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA RESERVA -->
+  <section id="reserva">
+    <div class="cta">
+      <div class="cta-text">
+        <h2>Reserva tu aventura</h2>
+        <p>
+          Dime cuántas personas son, qué día estás mirando y si prefieres
+          <strong>río, playa o combo</strong>. Te envío todos los detalles del precio
+          y punto de encuentro.
+        </p>
+        <div class="cta-options">
+          <button class="btn-primary" onclick="window.location.href='https://wa.me/17870000000?text=Hola%20JungleSpotsPR,%20quiero%20reservar%20un%20tour'">
+            Escribir por WhatsApp
+          </button>
+          <button class="btn-ghost" onclick="window.location.href='https://www.instagram.com/junglespotspr'">
+            Enviar DM en Instagram
+          </button>
+        </div>
+        <div class="cta-note">
+          *Recomendamos reservar con varios días de anticipación. Cupos limitados.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p class="section-subtitle">
+      Si tienes preguntas especiales (grupos grandes, eventos privados, fotos profesionales, etc.), escríbeme directo.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Datos de contacto</h3>
+        <p>
+          WhatsApp: <strong>+1 (787) XXX-XXXX</strong><br/>
+          Instagram: <strong>@junglespotspr</strong><br/>
+          Zona base: <strong>Río Grande, Puerto Rico</strong><br/>
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>Recomendaciones</h3>
+        <p>
+          • Traer tenis que puedas mojar y sandalias.<br/>
+          • Ropa cómoda y traje de baño.<br/>
+          • Bloqueador solar y repelente.<br/>
+          • Bulto pequeño para tus cosas.<br/>
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> JungleSpotsPR. Todos los derechos reservados.</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/junglespotspr" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://wa.me/17870000000" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+
+</body>
+</html>
